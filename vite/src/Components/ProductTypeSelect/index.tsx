@@ -8,7 +8,7 @@ interface ProductTypeSelectProps {
   options: string[];
 }
 
-const ProductTypeSelect: React.FC<ProductTypeSelectProps> = (props) => {
+export default function ProductTypeSelect(props: ProductTypeSelectProps) {
   const options = props.options;
 
   return (
@@ -27,6 +27,4 @@ const ProductTypeSelect: React.FC<ProductTypeSelectProps> = (props) => {
       </select>
     </div>
   );
-};
-
-export default ProductTypeSelect;
+}

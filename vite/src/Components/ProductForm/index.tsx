@@ -9,7 +9,7 @@ import Footer from "../Footer";
 
 import { ProductProps } from "../../model/ProductProps";
 
-const ProductForm: React.FC = () => {
+export default function ProductForm() {
   const navigate = useNavigate();
 
   const skuRef = React.useRef<HTMLInputElement | null>(null);
@@ -63,6 +63,10 @@ const ProductForm: React.FC = () => {
         prod_attr = prodAttr[prod];
       }
     }
+
+    /*
+      handle class instance here
+    */
 
     const newProduct: ProductProps = {
       sku: sku,
@@ -133,6 +137,4 @@ const ProductForm: React.FC = () => {
       <Footer>Scandiweb test Assignment</Footer>
     </div>
   );
-};
-
-export default ProductForm;
+}

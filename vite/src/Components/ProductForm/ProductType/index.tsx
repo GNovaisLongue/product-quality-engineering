@@ -14,7 +14,7 @@ interface ProductTypeProps {
   typeAttributes: (attributes: { [key: string]: string }) => void;
 }
 
-const ProductType: React.FC<ProductTypeProps> = (props) => {
+export default function ProductType(props: ProductTypeProps) {
   const [inputs, setInputs] = React.useState<{ [K: string]: string }>({});
   const [type, setType] = React.useState<string>("DVD");
   const [productTypeInput, setProductTypeInput] =
@@ -75,6 +75,4 @@ const ProductType: React.FC<ProductTypeProps> = (props) => {
       {/* <ProductTypeInput type={type} onAttributesChange={onAttributesChange} /> */}
     </div>
   );
-};
-
-export default ProductType;
+}

@@ -8,7 +8,7 @@ interface ProductTypeInputDataProps {
   inputDescription: string;
 }
 
-const ProductTypeInputData: React.FC<ProductTypeInputDataProps> = (props) => {
+export default function ProductTypeInputData(props: ProductTypeInputDataProps) {
   const data = props.data;
 
   return (
@@ -30,6 +30,4 @@ const ProductTypeInputData: React.FC<ProductTypeInputDataProps> = (props) => {
       <p>{props.inputDescription}</p>
     </>
   );
-};
-
-export default ProductTypeInputData;
+}

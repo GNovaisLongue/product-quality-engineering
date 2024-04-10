@@ -1,7 +1,7 @@
 import { ProductProps } from "../../../model/ProductProps";
 import "./styles.css";
 
-const ProductItem: React.FC<ProductProps> = (props) => {
+export default function ProductItem(props: ProductProps) {
   return (
     <div>
       <p>
@@ -19,6 +19,4 @@ const ProductItem: React.FC<ProductProps> = (props) => {
       </p>
     </div>
   );
-};
-
-export default ProductItem;
+}

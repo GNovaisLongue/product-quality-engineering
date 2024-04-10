@@ -1,11 +1,9 @@
 import ProductForm from "../Components/ProductForm/index";
 
-const AddProductPage: React.FC = () => {
+export default function ProductListPage() {
   return (
     <div>
       <ProductForm />
     </div>
   );
-};
-
-export default AddProductPage;
+}

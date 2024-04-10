@@ -9,7 +9,7 @@ import Footer from "../Footer";
 
 import { ProductProps } from "../../model/ProductProps";
 
-const ProductsList: React.FC = () => {
+export default function ProductsList() {
   const navigate = useNavigate();
   const gotoAddProductPage = "/add-product";
   const [productsDeletion, setProductsDeletion] = React.useState<string[]>([]); //saves the SKUs to future deletion
@@ -24,6 +24,7 @@ const ProductsList: React.FC = () => {
       }
     };
 
+  ///
   const handleDelete = (e: React.FormEvent) => {
     e.preventDefault(); //prevents the browser from reloading once a form updates
     if (productsDeletion.length !== 0) {
@@ -85,11 +86,9 @@ const ProductsList: React.FC = () => {
         </div>
         <hr />
         <ul className="div-products">
-          {products.length === 0 && (
+          {products.length === 0 ? (
             <h2 className="products-list_fallback">Found no Products.</h2>
-          )}
-
-          {products &&
+          ) : (
             products.map((product) => (
               <div className="div-product" key={product.sku}>
                 <input
@@ -105,13 +104,12 @@ const ProductsList: React.FC = () => {
                   product_attribute={product.product_attribute}
                 />
               </div>
-            ))}
+            ))
+          )}
         </ul>
       </form>
 
       <Footer>Scandiweb test Assignment</Footer>
     </div>
   );
-};
-
-export default ProductsList;
+}

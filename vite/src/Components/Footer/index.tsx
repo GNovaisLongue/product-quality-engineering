@@ -4,7 +4,7 @@ interface FooterProps {
   children: string;
 }
 
-const Footer: React.FC<FooterProps> = (props) => {
+export default function Footer(props: FooterProps) {
   return (
     <>
       <div className="footer-div" />
@@ -12,6 +12,4 @@ const Footer: React.FC<FooterProps> = (props) => {
       <p className="footer-paragraph">{props.children}</p>
     </>
   );
-};
-
-export default Footer;
+}

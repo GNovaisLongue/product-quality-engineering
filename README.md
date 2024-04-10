@@ -36,10 +36,9 @@ If you want to stop and remove everything associated to this project from your d
 - [http://localhost:8080](http://localhost:8080) for mysql database.
 - [http://localhost:8000](http://localhost:8000) for apache server.
 
-
 ## Scandiweb Junior Developer test assignment
 
-### The following project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### The following project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 Project contains dependencies both from npm and composer, requiring `npm install` and `composer install` to be executed after pull.
 

@@ -1,11 +1,9 @@
 import ProductsList from "../Components/ProductsList";
 
-const ProductListPage: React.FC = () => {
+export default function ProductListPage() {
   return (
     <div>
       <ProductsList />
     </div>
   );
-};
-
-export default ProductListPage;
+}

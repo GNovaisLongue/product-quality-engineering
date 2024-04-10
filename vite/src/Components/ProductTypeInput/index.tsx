@@ -1,9 +1,9 @@
 import "./styles.css";
 
-const ProductTypeInput = (props: {
+export default function ProductTypeInput(props: {
   type: string;
   onAttributesChange: React.ChangeEventHandler<HTMLInputElement>;
-}) => {
+}) {
   const { type, onAttributesChange } = props;
 
   return (
@@ -92,6 +92,4 @@ const ProductTypeInput = (props: {
       )}
     </div>
   );
-};
-
-export default ProductTypeInput;
+}
