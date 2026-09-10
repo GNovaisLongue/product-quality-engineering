@@ -7,13 +7,13 @@ import "./styles.css";
 import ProductItem from "./ProductItem";
 import Footer from "../Footer";
 
-import { ProductProps } from "../../model/ProductProps";
+import { IProductProps } from "../../model/ProductProps";
 
 export default function ProductsList() {
   const navigate = useNavigate();
   const gotoAddProductPage = "/add-product";
   const [productsDeletion, setProductsDeletion] = React.useState<string[]>([]); //saves the SKUs to future deletion
-  const [products, setProducts] = React.useState<ProductProps[]>([]);
+  const [products, setProducts] = React.useState<IProductProps[]>([]);
 
   const onCheckHandler =
     (sku: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ export default function ProductsList() {
   const getData = () => {
     axiosService
       .getAll()
-      .then((res: { data: React.SetStateAction<ProductProps[]> }) => {
+      .then((res: { data: React.SetStateAction<IProductProps[]> }) => {
         setProducts(res.data);
       })
       .catch((err: { message: unknown }) => {

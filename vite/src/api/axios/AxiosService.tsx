@@ -1,4 +1,4 @@
-import { ProductProps } from "../../model/ProductProps";
+import { IProductProps } from "../../model/ProductProps";
 import axiosConfig from "./config/AxiosConfig";
 
 const getAll = () => {
@@ -8,7 +8,7 @@ const getAll = () => {
   });
 };
 
-const post = (product: ProductProps) => {
+const post = (product: IProductProps) => {
   return axiosConfig({
     method: "post",
     url: "/",

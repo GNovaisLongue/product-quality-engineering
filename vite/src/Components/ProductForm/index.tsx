@@ -7,7 +7,7 @@ import "./styles.css";
 import ProductType from "./ProductType";
 import Footer from "../Footer";
 
-import { ProductProps } from "../../model/ProductProps";
+import { IProductProps } from "../../model/ProductProps";
 
 export default function ProductForm() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function ProductForm() {
     setProdAttr(attr);
   };
 
-  const handlePost = (product: ProductProps) => {
+  const handlePost = (product: IProductProps) => {
     axiosService
       .post(product)
       .then(() => {
@@ -68,7 +68,7 @@ export default function ProductForm() {
       handle class instance here
     */
 
-    const newProduct: ProductProps = {
+    const newProduct: IProductProps = {
       sku: sku,
       name: name,
       price: price,

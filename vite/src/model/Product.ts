@@ -1,7 +1,7 @@
 import axiosService from "../api/axios/AxiosService";
-import { ProductProps } from "./ProductProps";
+import { IProductProps } from "./ProductProps";
 
-export abstract class Product implements ProductProps {
+export abstract class Product implements IProductProps {
   sku: string;
   name: string;
   price: string;

@@ -1,7 +1,7 @@
-import { ProductProps } from "../../../model/ProductProps";
+import { IProductProps } from "../../../model/ProductProps";
 import "./styles.css";
 
-export default function ProductItem(props: ProductProps) {
+export default function ProductItem(props: IProductProps) {
   return (
     <div>
       <p>

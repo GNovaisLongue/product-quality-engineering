@@ -1,4 +1,4 @@
-export interface ProductProps {
+export interface IProductProps {
   sku: string;
   name: string;
   price: string;
@@ -6,23 +6,23 @@ export interface ProductProps {
   product_attribute: string;
 }
 
-export interface DVDAttributes {
+export interface IDVDAttributes {
   type: "DVD";
   size: string;
 }
 
-export interface BookAttributes {
+export interface IBookAttributes {
   type: "Book";
   weight: string;
 }
 
-export interface FurnitureAttributes {
+export interface IFurnitureAttributes {
   type: "Furniture";
   height: string;
   width: string;
   length: string;
 }
 export type ProductAttributes =
-  | DVDAttributes
-  | BookAttributes
-  | FurnitureAttributes;
+  | IDVDAttributes
+  | IBookAttributes
+  | IFurnitureAttributes;
