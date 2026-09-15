@@ -18,20 +18,13 @@ const post = (product: IProductProps) => {
   });
 };
 
-// !!! for some reason, delete method doesn't work on 000webhost
-// bypassed using 'post' method
+// Mass delete goes through POST with a SKU array (backend also accepts DELETE on /api/*).
 const remove = (sku: string[] | string) => {
   return axiosConfig({
     method: "post",
     url: "/",
     data: sku,
   });
-
-  // return axiosConfig({
-  //   method: "delete",
-  //   url: "/",
-  //   ...sku,
-  // });
 };
 
 const axiosService = {

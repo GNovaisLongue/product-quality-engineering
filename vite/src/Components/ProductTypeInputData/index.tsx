@@ -21,6 +21,7 @@ export default function ProductTypeInputData(props: ProductTypeInputDataProps) {
               id={e.id}
               onChange={props.onChange}
               type={props.inputType}
+              step="any"
               maxLength={5}
               size={10}
             />

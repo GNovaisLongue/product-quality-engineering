@@ -1,0 +1,163 @@
+openapi: 3.0.3
+info:
+  title: Product Quality Engineering API
+  version: 1.0.0
+  description: Polymorphic product CRUD (DVD | Book | Furniture).
+servers:
+  - url: http://localhost:8000
+    description: Docker Apache backend
+paths:
+  /health:
+    get:
+      summary: Healthcheck
+      responses:
+        '200':
+          description: OK
+  /api/products:
+    get:
+      summary: List all products
+      responses:
+        '200':
+          description: Product list envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+    post:
+      summary: Create a product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '409':
+          description: Duplicate SKU
+        '422':
+          description: Validation error
+    delete:
+      summary: Bulk delete by SKU array
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: Deleted count
+  /api/products/{sku}:
+    get:
+      summary: Get one product
+      parameters:
+        - in: path
+          name: sku
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductEnvelope'
+        '404':
+          description: Not found
+    delete:
+      summary: Delete one product
+      parameters:
+        - in: path
+          name: sku
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted count
+components:
+  schemas:
+    Product:
+      type: object
+      required: [sku, name, price, product_type, product_attribute]
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        price:
+          type: string
+        product_type:
+          type: string
+          enum: [DVD, Book, Furniture]
+        product_attribute:
+          type: string
+        attribute:
+          type: object
+    ProductInput:
+      type: object
+      required: [sku, name, price, product_type]
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        price:
+          oneOf:
+            - type: string
+            - type: number
+        product_type:
+          type: string
+          enum: [DVD, Book, Furniture]
+        product_attribute:
+          type: string
+        size:
+          oneOf:
+            - type: string
+            - type: number
+        weight:
+          oneOf:
+            - type: string
+            - type: number
+        height:
+          oneOf:
+            - type: string
+            - type: number
+        width:
+          oneOf:
+            - type: string
+            - type: number
+        length:
+          oneOf:
+            - type: string
+            - type: number
+    ProductEnvelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/Product'
+    ProductList:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        meta:
+          type: object
+          properties:
+            count:
+              type: integer

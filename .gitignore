@@ -7,9 +7,15 @@ npm-debug.log*
 /build
 
 .env
+.env.development
 .env*.local
 .env*.prod
 /output
+
+# generated test artefacts (frozen copies live in docs/reports/)
+/reports
+.pytest_cache
+__pycache__/
 
 #nextjs test app
 /frontend

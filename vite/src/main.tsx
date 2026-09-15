@@ -11,7 +11,6 @@ import ProductListPage from "./pages/ProductListPage.tsx";
 import AddProductPage from "./pages/AddProductPage.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  // <React.StrictMode>
   <Router>
     <Routes>
       <Route path="/" element={<Navigate to="/list-products" />} />
@@ -19,5 +18,4 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Route path="/add-product" element={<AddProductPage />} />
     </Routes>
   </Router>
-  // </React.StrictMode>
 );

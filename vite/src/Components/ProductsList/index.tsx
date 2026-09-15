@@ -24,7 +24,6 @@ export default function ProductsList() {
       }
     };
 
-  ///
   const handleDelete = (e: React.FormEvent) => {
     e.preventDefault(); //prevents the browser from reloading once a form updates
     if (productsDeletion.length !== 0) {

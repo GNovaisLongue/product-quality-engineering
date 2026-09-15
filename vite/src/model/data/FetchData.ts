@@ -7,7 +7,7 @@ const ProductAttributes: ProductAttributeProps[] = [
         label: "Size (MB)",
       },
     ],
-    p_description: "Please, provide size in cm",
+    p_description: "Please, provide size in MB",
   },
   {
     type: "Book",

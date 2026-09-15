@@ -3,7 +3,6 @@ import React from "react";
 import "./styles.css";
 import ProductTypeInputData from "../../ProductTypeInputData";
 import ProductTypeSelect from "../../ProductTypeSelect";
-// import ProductTypeInput from "../../ProductTypeInput";
 
 import FetchData, {
   ProductAttributeProps,
@@ -72,7 +71,6 @@ export default function ProductType(props: ProductTypeProps) {
         onChange={onAttributesChange}
         inputDescription={productTypeInput.p_description}
       />
-      {/* <ProductTypeInput type={type} onAttributesChange={onAttributesChange} /> */}
     </div>
   );
 }

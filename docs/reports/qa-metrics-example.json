@@ -1,0 +1,39 @@
+{
+  "summary": {
+    "total": 67,
+    "passed": 67,
+    "failed": 0,
+    "skipped": 0,
+    "pass_rate": 100.0,
+    "duration_s": 7.97
+  },
+  "by_area": {
+    "api": {
+      "passed": 54
+    },
+    "database": {
+      "passed": 4
+    },
+    "e2e": {
+      "passed": 3
+    },
+    "integration": {
+      "passed": 3
+    },
+    "smoke": {
+      "passed": 3
+    }
+  },
+  "by_product_type": {
+    "book": {
+      "passed": 9
+    },
+    "dvd": {
+      "passed": 10
+    },
+    "furniture": {
+      "passed": 11
+    }
+  },
+  "failures": []
+}

@@ -64,10 +64,6 @@ export default function ProductForm() {
       }
     }
 
-    /*
-      handle class instance here
-    */
-
     const newProduct: IProductProps = {
       sku: sku,
       name: name,
