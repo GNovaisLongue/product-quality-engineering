@@ -16,5 +16,8 @@
     "psr-4": {
       "Tests\\": "tests/"
     }
+  },
+  "scripts": {
+    "test": "php vendor/phpunit/phpunit/phpunit -c phpunit.xml --testsuite unit"
   }
 }

@@ -1,7 +1,7 @@
 """QA analytics (Phase 7, steps 37–38) — junit.xml → per-area metrics + JSON.
 
 Usage:
-    python -m pytest tests/api tests/contract tests/database tests/integration -q --junitxml=reports/junit.xml
+    python -m pytest tests/smoke tests/api tests/contract tests/database tests/integration -q --junitxml=reports/junit.xml
     python qa/analytics.py reports/junit.xml
 """
 import json

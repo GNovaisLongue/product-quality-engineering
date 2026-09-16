@@ -40,7 +40,7 @@ jobs:
           pip install pytest requests pymysql pyyaml jsonschema
           python -m pytest tests/smoke tests/api tests/contract tests/database tests/integration -q --junitxml=reports/junit.xml
           python qa/analytics.py reports/junit.xml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artefact@v4
         if: always()
         with:
           name: regression-reports
