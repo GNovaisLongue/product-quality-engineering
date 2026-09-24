@@ -14,7 +14,7 @@ note*.md
 .env*.prod
 /output
 
-# generated test artefacts (frozen copies live in docs/reports/)
+# generated test artifacts (frozen copies live in docs/reports/)
 /reports
 .pytest_cache
 __pycache__/

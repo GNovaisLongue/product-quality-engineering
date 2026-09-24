@@ -15,7 +15,7 @@ Date: 2026-09-10 · Env: `docker compose up --build` (MySQL 8.1 :9906, API :8000
 | E2E (Playwright, Chromium) | pytest `tests/e2e` | **3/3 pass** (DVD / Book / Furniture via UI) |
 | **Total pytest** | | **67/67 pass, 100% (~8 s)** |
 
-Artefacts: `reports/junit.xml`, `reports/qa-metrics.json` (live, git-ignored);
+Artifacts: `reports/junit.xml`, `reports/qa-metrics.json` (live, git-ignored);
 frozen copies in `docs/reports/`. Analytics: `qa/analytics.py` → by_area +
 by_product_type (DVD 10, Book 9, Furniture 11 passing).
 

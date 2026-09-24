@@ -75,7 +75,7 @@ E2E needs browsers (`qa/venv/Scripts/playwright.exe install chromium` once), the
 | openapi/openapi.yaml | contract under test |
 | tests/{smoke,api,contract,database,integration,e2e} | pytest suites |
 | qa/{clients,data,database,schemas,reporting} + analytics.py | pytest and playwright |
-| docs/ | requirements, architecture, and example artefacts |
+| docs/ | requirements, architecture, and example artifacts |
 | .github/workflows/ | tests, regression, nightly |
 
 ## Acknowledgments
