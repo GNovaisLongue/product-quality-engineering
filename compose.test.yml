@@ -1,0 +1,49 @@
+# Docker-only test environment (roadmap item #29).
+#
+# Usage:
+#   cp .env.example .env.development
+#   docker compose up --build -d mysql php-apache          # stack under test
+#
+#   # PHP domain unit tests (no DB needed, no local composer needed)
+#   docker compose -f compose.yml -f compose.test.yml run --rm backend-test
+#
+#   # Python API/contract/db/integration suites (needs mysql + php-apache up)
+#   docker compose -f compose.yml -f compose.test.yml run --rm qa-test
+#
+#   # E2E suite (also needs the frontend container up)
+#   docker compose -f compose.yml -f compose.test.yml up --build -d frontend
+#   docker compose -f compose.yml -f compose.test.yml run --rm qa-test \
+#       pytest tests/e2e -q --junitxml=reports/junit.xml
+
+services:
+  backend-test:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: test
+    networks:
+      - apache-db
+
+  qa-test:
+    build:
+      context: .
+      dockerfile: qa/Dockerfile
+    env_file:
+      - .env.development
+    environment:
+      API_BASE_URL: http://php-apache:80
+      UI_BASE_URL: http://frontend:3000
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+    volumes:
+      - ./reports:/app/reports
+    networks:
+      - apache-db
+      - react-apache
+    depends_on:
+      php-apache:
+        condition: service_healthy
+
+  frontend:
+    environment:
+      VITE_DOMAIN_DB: http://php-apache:80

@@ -11,20 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
-          extensions: pdo, pdo_mysql
-          tools: composer:2.8
-      - name: PHP unit (domain polymorphism)
-        working-directory: backend
+      - name: PHP unit (domain polymorphism) — containerized
         run: |
-          composer install --no-interaction
-          ./vendor/bin/phpunit --testsuite unit
+          docker compose -f compose.yml -f compose.test.yml build backend-test
+          docker compose -f compose.yml -f compose.test.yml run --rm backend-test
       - name: Start stack
         run: |
           cp .env.example .env.development
-          docker compose up --build -d mysql php-apache
+          docker compose up --build -d mysql php-apache frontend
       - name: Wait for API
         run: |
           for i in $(seq 1 30); do
@@ -32,14 +26,13 @@ jobs:
             sleep 5
           done
           exit 1
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Full regression (smoke + api + contract + db + integration)
+      - name: Full regression (smoke + api + contract + db + integration) — containerized
         run: |
-          pip install pytest requests pymysql pyyaml jsonschema
-          python -m pytest tests/smoke tests/api tests/contract tests/database tests/integration -q --junitxml=reports/junit.xml
-          python qa/analytics.py reports/junit.xml
+          docker compose -f compose.yml -f compose.test.yml build qa-test
+          docker compose -f compose.yml -f compose.test.yml run --rm qa-test \
+            pytest tests/smoke tests/api tests/contract tests/database tests/integration -q --junitxml=reports/junit.xml
+          docker compose -f compose.yml -f compose.test.yml run --rm qa-test \
+            python qa/analytics.py reports/junit.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:

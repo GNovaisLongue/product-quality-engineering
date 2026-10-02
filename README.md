@@ -4,9 +4,9 @@ Test project running on Vite + PHP + MySQL + Docker.
 
 ## Description
 
-Project previously used as a test assignment for a Developer position.
-The project is a CRUD application using Vite, PHP, and MySQL, salvaged for QA testing and learning purposes.
-OOP domain + automated quality engineering against a full-stack app (React/Vite + PHP + MySQL + Docker).
+Object-oriented domain modeling with polymorphism + automated quality engineering against a full-stack app (React/Vite + PHP + MySQL + Docker).
+Project previously used as a test assignment for a Developer position. The project is a simple CRUD application using Vite, PHP, and MySQL.
+Salvaged for QA testing and learning purposes.
 **analyse → refactor → harden → test → automate → CI → performance → report.**
 
 ## Getting Started
@@ -17,7 +17,7 @@ OOP domain + automated quality engineering against a full-stack app (React/Vite 
 * VSCode or any other IDE
 * For local tests, [PHP](https://www.php.net/), [composer](https://getcomposer.org), and [python](https://www.python.org/) are required
 
-### Quickstart
+### Executing program
 
 ```bash
 cp .env.example .env.development        # local env (untracked, never commit)
@@ -35,15 +35,33 @@ To stop and remove everything associated to this project from your docker:
 docker compose down -v --rmi 'all'
 ```
 
-## Tests
+### Running the tests (no local PHP/Composer/Python needed)
 
-For this current version, the tests must be done locally, outside the containers.
+```bash
+# PHP domain unit tests
+docker compose -f compose.yml -f compose.test.yml run --rm backend-test
+
+# Python suites (smoke/api/contract/db/integration) — needs mysql + php-apache running
+docker compose -f compose.yml -f compose.test.yml run --rm qa-test
+
+# E2E — also needs the frontend container running
+docker compose -f compose.yml -f compose.test.yml up --build -d frontend
+docker compose -f compose.yml -f compose.test.yml run --rm qa-test pytest tests/e2e -q
+```
+
+### Running the tests locally, outside the containers
+
+you need to have a local PHP/Composer/Python environment set up, then run the following commands:
 
 ```shell
 # PHP domain unit (needs composer install)
 # (cd backend && composer install && composer test)
 cd backend; composer install; composer test
-# Python suites (needs live stack; deps live in qa/venv)
+
+# Python suites (needs live stack; venv + dependencies installed in ./qa)
+# Create a virtual environment named `venv`:
+python -m venv venv
+
 qa/venv/Scripts/python.exe -m pytest tests/smoke tests/api tests/contract tests/database tests/integration -q --junitxml=reports/junit.xml
 # Read results
 qa/venv/Scripts/python.exe qa/analytics.py reports/junit.xml
@@ -51,6 +69,17 @@ qa/venv/Scripts/python.exe qa/analytics.py reports/junit.xml
 
 E2E needs browsers (`qa/venv/Scripts/playwright.exe install chromium` once), then
 `qa/venv/Scripts/python.exe -m pytest tests/e2e` with the stack + frontend up.
+
+### Production
+
+```bash
+cp .env.example .env.production   # fill in real, non-root secrets — see the file's comments
+docker compose -f compose.yml -f compose.prod.yml up --build -d mysql php-apache frontend
+```
+
+`compose.prod.yml` builds the backend's `production` target (no dev deps) and the
+frontend's `production` target (static build served by nginx on :80), drops the
+dev bind-mounts, and expects a scoped, non-root MySQL user instead of `root`.
 
 ## API
 

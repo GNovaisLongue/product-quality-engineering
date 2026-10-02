@@ -3,8 +3,6 @@ logs
 *.log
 npm-debug.log*
 
-note*.md
-
 # production
 /build
 
@@ -14,10 +12,19 @@ note*.md
 .env*.prod
 /output
 
-# generated test artifacts (frozen copies live in docs/reports/)
+# generated test artefacts (frozen copies live in docs/reports/)
 /reports
 .pytest_cache
 __pycache__/
 
 #nextjs test app
 /frontend
+
+# local/manual python virtualenvs (OS-specific, don't commit — use
+# requirements-test.txt + qa/Dockerfile instead)
+qa/venv/
+.venv/
+venv/
+
+# production secrets
+.env.production

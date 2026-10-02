@@ -15,13 +15,13 @@ Date: 2026-09-10 · Env: `docker compose up --build` (MySQL 8.1 :9906, API :8000
 | E2E (Playwright, Chromium) | pytest `tests/e2e` | **3/3 pass** (DVD / Book / Furniture via UI) |
 | **Total pytest** | | **67/67 pass, 100% (~8 s)** |
 
-Artifacts: `reports/junit.xml`, `reports/qa-metrics.json` (live, git-ignored);
+Artefacts: `reports/junit.xml`, `reports/qa-metrics.json` (live, git-ignored);
 frozen copies in `docs/reports/`. Analytics: `qa/analytics.py` → by_area +
 by_product_type (DVD 10, Book 9, Furniture 11 passing).
 
 ## Defects closed by this run
 
-BUG-001 (SQLi) → TC-SEC-001..003 pass; BUG-002 → TC-VAL-*pass; BUG-003/004 →
+BUG-001 (SQLi) → TC-SEC-001..003 pass; BUG-002 → TC-VAL-* pass; BUG-003/004 →
 TC-DB-001/003/004 pass; BUG-005/007 → TC-API-* + TC-SEC-004 pass; BUG-006 →
 `.env.development` untracked (verify: `git status` clean of it); BUG-008 (DVD
 help text) fixed; **BUG-009 (decimal weights blocked by native `step=1`) was

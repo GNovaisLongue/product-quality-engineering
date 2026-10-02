@@ -1,0 +1,36 @@
+# Production overlay. Base compose.yml is dev-shaped (bind mounts, root DB
+# user, wide-open CORS, phpMyAdmin exposed) — this file overrides those for
+# a deployed environment.
+#
+# Usage:
+#   cp .env.example .env.production   # then fill in real, non-root secrets
+#   docker compose -f compose.yml -f compose.prod.yml up --build -d \
+#       mysql php-apache frontend
+
+services:
+  mysql:
+    env_file:
+      - .env.production
+    ports: []            # don't publish the DB port on the host
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  php-apache:
+    build:
+      target: production
+    env_file:
+      - .env.production
+    volumes: []           # no source bind mounts — image is the artifact
+    restart: unless-stopped
+
+  frontend:
+    build:
+      target: production
+    command: []            # nginx's own entrypoint/CMD, not `npm run dev`
+    volumes: []            # no bind mounts, no live source
+    environment: {}
+    ports:
+      - "80:80"
+    restart: unless-stopped

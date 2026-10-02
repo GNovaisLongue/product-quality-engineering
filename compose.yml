@@ -51,6 +51,7 @@ services:
   phpmyadmin:
     container_name: mysql-interface
     image: phpmyadmin:5
+    profiles: ["tools"]   # dev convenience only: `docker compose --profile tools up`
     restart: always
     environment:
       PMA_HOST: mysql
@@ -67,6 +68,7 @@ services:
     build:
       context: ./vite
       dockerfile: Dockerfile
+      target: dev
     env_file:
       - .env.development
     command: npm run dev

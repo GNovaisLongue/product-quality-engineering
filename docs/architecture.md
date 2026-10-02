@@ -57,7 +57,7 @@ Product { sku:string, name:string, price:string, product_type:string, product_at
 
 `product_attribute` meaning resolved by `product_type` at every consumer (frontend form join, ProductItem display, no backend check). Classic "type code + uninterpreted string" smell.
 
-### 2.2 Target — polymorphism
+### 2.2 Target (per Instructions.md — polymorphism)
 
 ```bash
                     Product (abstract)
@@ -79,6 +79,12 @@ Application:     CreateProduct, DeleteProduct(s), ListProducts (use cases)
 Infrastructure:  MySQLProductRepository, DatabaseConnection (PDO)
 API:             ProductController, Request/Response DTOs, ProductFactory, error envelope
 ```
+
+Persistence stays relational (`products` table kept, schema hardened); `Factory` translates row ↔ domain object. Domain ≠ DB ≠ API — portfolio talking point.
+
+### 2.3 Why here (not everywhere)
+
+Polymorphism pays at: validation (per-type rules), attribute parsing/formatting, and factory creation. No need for repository-per-type or frontend class explosion — frontend keeps discriminated union + string join, backend owns domain enforcement.
 
 ## 3. Decisions deferred to Phase 2/3
 

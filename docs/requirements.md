@@ -1,5 +1,8 @@
 # Requirements — product-quality-engineering
 
+Source: reverse-engineered from existing implementation (`backend/`, `vite/src/`, `mysql/products.sql`, `compose.yml`).
+Status: Phase 1 — Understand (roadmap steps 1–4).
+
 ## 1. System overview
 
 Full-stack CRUD for products:
@@ -94,7 +97,7 @@ Seed:
 
 ## 8. Out of scope (for now)
 
-Auth, pagination, PUT/update, per-SKU GET, search/filter, migrations framework.
+Auth, pagination, PUT/update, per-SKU GET, search/filter, migrations framework. May be added in Phase 3 if useful (`PUT /api/products/{sku}` optional per Instructions.md).
 
 ## 9. Acceptance criteria for Phase 1
 
