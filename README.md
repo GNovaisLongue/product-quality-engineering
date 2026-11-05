@@ -7,7 +7,6 @@ Test project running on Vite + PHP + MySQL + Docker.
 Object-oriented domain modeling with polymorphism + automated quality engineering against a full-stack app (React/Vite + PHP + MySQL + Docker).
 Project previously used as a test assignment for a Developer position. The project is a simple CRUD application using Vite, PHP, and MySQL.
 Salvaged for QA testing and learning purposes.
-**analyse → refactor → harden → test → automate → CI → performance → report.**
 
 ## Getting Started
 
